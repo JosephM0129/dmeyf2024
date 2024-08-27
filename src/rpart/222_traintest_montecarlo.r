@@ -4,17 +4,13 @@ gc() # Garbage Collection
 require("data.table")
 require("rpart")
 require("parallel")
-require("primes")
-
 
 PARAM <- list()
 # reemplazar por las propias semillas
-PARAM$semilla_primigenia <- 102191
-PARAM$qsemillas <- 50
+PARAM$semillas <- c(100019, 100043, 100057, 100109, 100151)
 
-# dataset
+
 PARAM$dataset_nom <- "./datasets/competencia_01.csv"
-
 
 PARAM$training_pct <- 70L  # entre  1L y 99L 
 
@@ -99,15 +95,7 @@ ArbolEstimarGanancia <- function(semilla, param_basicos) {
 #------------------------------------------------------------------------------
 
 # Aqui se debe poner la carpeta de la computadora local
-setwd("~/buckets/b1/") # Establezco el Working Directory
-
-
-# genero numeros primos
-primos <- generate_primes(min = 100000, max = 1000000)
-set.seed(PARAM$semilla_primigenia) # inicializo 
-# me quedo con PARAM$qsemillas   semillas
-PARAM$semillas <- sample(primos, PARAM$qsemillas )
-
+setwd("C:/Users/Joseph/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF") # Establezco el Working Directory
 
 # cargo los datos
 dataset <- fread(PARAM$dataset_nom)
@@ -115,14 +103,13 @@ dataset <- fread(PARAM$dataset_nom)
 # trabajo, por ahora, solo con 202104
 dataset <- dataset[foto_mes==202104]
 
-
 # la funcion mcmapply  llama a la funcion ArbolEstimarGanancia
 #  tantas veces como valores tenga el vector  PARAM$semillas
 salidas <- mcmapply(ArbolEstimarGanancia,
   PARAM$semillas, # paso el vector de semillas
   MoreArgs = list(PARAM), # aqui paso el segundo parametro
   SIMPLIFY = FALSE,
-  mc.cores = detectCores()
+  mc.cores = 1  # debe ser 1 si se trabaja con Windows
 )
 
 # muestro la lista de las salidas en testing
@@ -132,11 +119,12 @@ salidas
 # paso la lista a vector
 tb_salida <- rbindlist(salidas)
 
+print( tb_salida )
 
-for( i in seq(10, 50, 10) )
-{
-  cat( i, "\t", tb_salida[ 1:i, mean(ganancia_test)], "\n" )
-}
+# finalmente calculo la media (promedio)  de las ganancias
+cat( "ganancia promedio: ", tb_salida[, mean(ganancia_test)], "\n" )
 
+# calculo todos los promedios
+cat(  "ganancia desvio estandar: ", tb_salida[, sd(ganancia_test)], "\n" )
 
-cat( "desvio : " , tb_salida[ , sd(ganancia_test) ], "\n" )
+# desvio estandar Distribucion Binomial   sqrt( n * p * (1-p) )
