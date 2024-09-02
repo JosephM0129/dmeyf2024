@@ -123,9 +123,7 @@ DosArbolesEstimarGanancia <- function(semilla, training_pct, param_rpart1, param
 #------------------------------------------------------------------------------
 
 # Aqui se debe poner la carpeta de la computadora local
-setwd("C:/Users/Joseph/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF") # Establezco el Working Directory
-
-
+setwd("D:/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF") # Establezco el Working Directory
 
 # genero numeros primos
 primos <- generate_primes(min = 100000, max = 1000000)
@@ -142,9 +140,9 @@ dataset <- dataset[foto_mes==202104]
 
 
 
-dir.create("C:/Users/Joseph/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF/exp/EX2410", showWarnings = FALSE)
+dir.create("D:/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF/exp/EX2410", showWarnings = FALSE)
 
-setwd("C:/Users/Joseph/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF/exp/EX2410")
+setwd("D:/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF/exp/EX2410")
 
 
 

@@ -86,6 +86,8 @@ dataset[fold == 2, prob_baja2 := prediccion[, "BAJA+2"]]
 ganancia_test <- dataset[fold == 2 & prob_baja2 > 0.025, sum(ganancia)]
 
 # escalo la ganancia como si fuera todo el dataset
+# Se normaliza porque si trabajo con test que tengo 30% de datos, divido por 0.3 para 
+# escalar la ganancia.
 ganancia_test_normalizada <- ganancia_test / (( 100 - PARAM$training_pct ) / 100 )
 
 estimulos <- dataset[fold == 2 & prob_baja2 > 0.025, .N]

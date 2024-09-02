@@ -99,7 +99,7 @@ ArbolEstimarGanancia <- function(semilla, param_basicos) {
 #------------------------------------------------------------------------------
 
 # Aqui se debe poner la carpeta de la computadora local
-setwd("C:/Users/Joseph/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF") # Establezco el Working Directory
+setwd("D:/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF") # Establezco el Working Directory
 
 
 # genero numeros primos

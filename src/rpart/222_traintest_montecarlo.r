@@ -95,7 +95,7 @@ ArbolEstimarGanancia <- function(semilla, param_basicos) {
 #------------------------------------------------------------------------------
 
 # Aqui se debe poner la carpeta de la computadora local
-setwd("C:/Users/Joseph/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF") # Establezco el Working Directory
+setwd("D:/OneDrive - Lisicki Litvin y Asociados/Maestria/DM EF") # Establezco el Working Directory
 
 # cargo los datos
 dataset <- fread(PARAM$dataset_nom)
@@ -122,9 +122,9 @@ tb_salida <- rbindlist(salidas)
 print( tb_salida )
 
 # finalmente calculo la media (promedio)  de las ganancias
-cat( "ganancia promedio: ", tb_salida[, mean(ganancia_test)], "\n" )
+cat( "ganancia promedio: ", tb_salida[, mean(ganancia_test)], "/n" )
 
 # calculo todos los promedios
-cat(  "ganancia desvio estandar: ", tb_salida[, sd(ganancia_test)], "\n" )
+cat(  "ganancia desvio estandar: ", tb_salida[, sd(ganancia_test)], "/n" )
 
 # desvio estandar Distribucion Binomial   sqrt( n * p * (1-p) )
