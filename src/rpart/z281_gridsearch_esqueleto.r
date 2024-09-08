@@ -143,7 +143,7 @@ tb_grid_search_detalle <- data.table(
 for (vmax_depth in c(4, 6, 8, 10, 12, 14)) {
   for (vmin_split in c(1000, 800, 600, 400, 200, 100, 50, 20, 10)) {
     for (vmin_bucket in c(333,267,200,133,67,33,17,7,3)) {
-    # notar como se agrega
+    # notar como se agrega  
     
     # vminsplit  minima cantidad de registros en un nodo para hacer el split
     print(paste("vmax_depth:", vmax_depth, ", vmin_split:", vmin_split, ", vmin_bucket", vmin_bucket))
