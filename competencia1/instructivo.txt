@@ -1,0 +1,5 @@
+Se adjunta el script en R, es necesario cambiar el directorio del archivo del dataset de la competencia de Kaggle.
+Correr en el siguiente orden en el ambiente de google cloud con al menos 8CPU y 128 de memoria ram.
+1) 723_preprocesamiento
+2) 724_lightgbm_binaria_bo
+3) 725_lightgbm_final
