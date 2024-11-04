@@ -425,21 +425,21 @@ wf_agosto <- function( w3 )
   param_local <- exp_wf_init( pnombrewf ) # linea workflow inicial fija
 
   # Etapa especificacion dataset de la Segunda Competencia Kaggle
-  DT_incorporar_dataset( "~/buckets/b1/datasets/competencia_02.csv.gz")
+  DT_incorporar_dataset( "~/buckets/b1/datasets/competencia_02.csv")
 
   # Etapas preprocesamiento
-  CA_catastrophe_base( metodo="MachineLearning")
-  FEintra_manual_base()
+  CA_catastrophe_base( metodo="Ninguno")
+  # FEintra_manual_base()
   DR_drifting_base(metodo="rank_cero_fijo")
   FEhist_base()
 
-  FErf_attributes_base( arbolitos= 20,
-    hojas_por_arbol= 16,
-    datos_por_hoja= 1000,
-    mtry_ratio= 0.2
-  )
+  # FErf_attributes_base( arbolitos= 20,
+  #   hojas_por_arbol= 16,
+  #   datos_por_hoja= 1000,
+  #   mtry_ratio= 0.2
+  # )
 
-  #CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
+  CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
 
   # Etapas modelado
   ts8 <- TS_strategy_base8()
