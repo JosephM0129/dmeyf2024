@@ -18,7 +18,7 @@ envg$EXPENV$repo_dir <- "~/dmeyf2024/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$messenger <- "~/install/zulip_enviar.sh"
 
-envg$EXPENV$semilla_primigenia <- 102191
+envg$EXPENV$semilla_primigenia <- 202108
 
 # leo el unico parametro del script
 args <- commandArgs(trailingOnly=TRUE)
@@ -139,7 +139,7 @@ FEhist_base <- function( pinputexps)
   param_local$lag3 <- FALSE # no me engraso con los lags de orden 3
 
   # no me engraso las manos con las tendencias
-  param_local$Tendencias1$run <- TRUE  # FALSE, no corre nada de lo que sigue
+  param_local$Tendencias1$run <- FALSE  # FALSE, no corre nada de lo que sigue
   param_local$Tendencias1$ventana <- 6
   param_local$Tendencias1$tendencia <- TRUE
   param_local$Tendencias1$minimo <- FALSE
@@ -276,8 +276,8 @@ TS_strategy_base6 <- function( pinputexps )
 
   param_local$train$training <- c(202102, 202101, 202012,
     202111, 202010, 202009)
-  param_local$train$validation <- c(202105)
-  param_local$train$testing <- c(202105)
+  param_local$train$validation <- c(202103)
+  param_local$train$testing <- c(202104)
 
   # Atencion  0.2  de  undersampling de la clase mayoritaria,  los CONTINUA
   # 1.0 significa NO undersampling
@@ -431,7 +431,7 @@ wf_Exp_stacking_w3 <- function( pnombrewf )
   DT_incorporar_dataset( "~/buckets/b1/datasets/competencia_02.csv")
 
   # Etapas preprocesamiento
-  CA_catastrophe_base(metodo="Ninguno")
+  CA_catastrophe_base(metodo="EstadisticaClasica")
   # FEintra_manual_base()
   DR_drifting_base(metodo="UVA")
   FEhist_base()
@@ -449,7 +449,7 @@ wf_Exp_stacking_w3 <- function( pnombrewf )
   ht <- HT_tuning_base( bo_iteraciones = 40 )  # iteraciones inteligentes
 
   # Etapas finales
-  fm <- FM_final_models_lightgbm( c(ht, ts6), ranks=c(1), qsemillas=5 )
+  fm <- FM_final_models_lightgbm( c(ht, ts6), ranks=c(1), qsemillas=10 )
   SC_scoring( c(fm, ts6) )
   EV_evaluate_conclase_gan() # evaluacion contra mes CON clase
 
