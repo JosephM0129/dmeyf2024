@@ -460,5 +460,5 @@ wf_Exp_stacking_w3 <- function( pnombrewf )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202106
-wf_junio()
+wf_Exp_stacking_w3()
 
