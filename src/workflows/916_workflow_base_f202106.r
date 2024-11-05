@@ -423,7 +423,7 @@ EV_evaluate_conclase_gan <- function( pinputexps )
 # Este es el  Workflow Baseline
 # Que predice 202106 donde SI hay clase completa
 
-wf_Exp_stacking_w3_v1 <- function( pnombrewf )
+wf_Exp_stacking_w4 <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea workflow inicial fija
 
@@ -433,16 +433,16 @@ wf_Exp_stacking_w3_v1 <- function( pnombrewf )
   # Etapas preprocesamiento
   CA_catastrophe_base(metodo="EstadisticaClasica")
   # FEintra_manual_base()
-  DR_drifting_base(metodo="UVA")
+  DR_drifting_base(metodo="rank_cero_fijo")
   FEhist_base()
 
-  # FErf_attributes_base( arbolitos= 20,
-  #   hojas_por_arbol= 16,
-  #   datos_por_hoja= 1000,
-  #   mtry_ratio= 0.2
-  # )
+  FErf_attributes_base( arbolitos= 20,
+    hojas_por_arbol= 16,
+    datos_por_hoja= 1000,
+    mtry_ratio= 0.2
+  )
 
-  # CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
+  CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
 
   # Etapas modelado
   ts6 <- TS_strategy_base6()
@@ -460,5 +460,5 @@ wf_Exp_stacking_w3_v1 <- function( pnombrewf )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202106
-wf_Exp_stacking_w3_v1()
+wf_Exp_stacking_w4()
 
