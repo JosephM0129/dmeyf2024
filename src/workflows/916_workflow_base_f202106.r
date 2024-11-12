@@ -267,7 +267,10 @@ TS_strategy_base6 <- function( pinputexps )
   param_local$meta$script <- "/src/wf-etapas/z2101_TS_training_strategy.r"
 
 
-  param_local$future <- c(202106)
+  param_local$future <- c(202106, 202105, 202104, 
+                          202103, 202102, 202101, 
+                          202012, 202011, 202010, 
+                          202009, 202008,202007,202006)
 
   param_local$final_train$undersampling <- 1.0
   param_local$final_train$clase_minoritaria <- c( "BAJA+1", "BAJA+2")
@@ -423,7 +426,7 @@ EV_evaluate_conclase_gan <- function( pinputexps )
 # Este es el  Workflow Baseline
 # Que predice 202106 donde SI hay clase completa
 
-wf_Exp_stacking_w5 <- function( pnombrewf )
+wf_Exp_stacking_w1.1 <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea workflow inicial fija
 
@@ -436,13 +439,13 @@ wf_Exp_stacking_w5 <- function( pnombrewf )
   DR_drifting_base(metodo="UVA")
   FEhist_base()
 
-   FErf_attributes_base( arbolitos= 20,
-     hojas_por_arbol= 16,
-     datos_por_hoja= 1000,
-     mtry_ratio= 0.2
-   )
+   # FErf_attributes_base( arbolitos= 20,
+   #   hojas_por_arbol= 16,
+   #   datos_por_hoja= 1000,
+   #   mtry_ratio= 0.2
+   # )
 
-   CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
+   # CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
 
   # Etapas modelado
   ts6 <- TS_strategy_base6()
@@ -460,5 +463,5 @@ wf_Exp_stacking_w5 <- function( pnombrewf )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202106
-wf_Exp_stacking_w5()
+wf_Exp_stacking_w1.1()
 
