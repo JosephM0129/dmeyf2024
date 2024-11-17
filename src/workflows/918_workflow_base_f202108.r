@@ -135,8 +135,8 @@ FEhist_base <- function( pinputexps)
   param_local$meta$script <- "/src/wf-etapas/z1501_FE_historia.r"
 
   param_local$lag1 <- TRUE
-  param_local$lag2 <- FALSE # no me engraso con los lags de orden 2
-  param_local$lag3 <- FALSE # no me engraso con los lags de orden 3
+  param_local$lag2 <- TRUE # no me engraso con los lags de orden 2
+  param_local$lag3 <- TRUE # no me engraso con los lags de orden 3
 
   # no me engraso las manos con las tendencias
   param_local$Tendencias1$run <- TRUE  # FALSE, no corre nada de lo que sigue
@@ -420,7 +420,7 @@ KA_evaluate_kaggle <- function( pinputexps )
 # Este es el  Workflow Baseline
 # Que predice 202108 donde NO conozco la clase
 
-wf_agosto <- function( w3 )
+wf_agosto_v1 <- function( w3 )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea workflow inicial fija
 
@@ -428,16 +428,16 @@ wf_agosto <- function( w3 )
   DT_incorporar_dataset( "~/buckets/b1/datasets/competencia_02.csv")
 
   # Etapas preprocesamiento
-  CA_catastrophe_base( metodo="Ninguno")
+  CA_catastrophe_base metodo="MachineLearning")
   # FEintra_manual_base()
-  DR_drifting_base(metodo="rank_cero_fijo")
+  DR_drifting_base(metodo="deflacion")
   FEhist_base()
-
-  # FErf_attributes_base( arbolitos= 20,
-  #   hojas_por_arbol= 16,
-  #   datos_por_hoja= 1000,
-  #   mtry_ratio= 0.2
-  # )
+  
+  FErf_attributes_base( arbolitos= 20,
+    hojas_por_arbol= 16,
+    datos_por_hoja= 1000,
+  mtry_ratio= 0.2
+   )
 
   CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
 
@@ -446,7 +446,7 @@ wf_agosto <- function( w3 )
   ht <- HT_tuning_base( bo_iteraciones = 40 )  # iteraciones inteligentes
 
   # Etapas finales
-  fm <- FM_final_models_lightgbm( c(ht, ts8), ranks=c(1), qsemillas=5 )
+  fm <- FM_final_models_lightgbm( c(ht, ts8), ranks=c(1), qsemillas=10 )
   SC_scoring( c(fm, ts8) )
   KA_evaluate_kaggle()  # genera archivos para Kaggle
 
@@ -457,5 +457,5 @@ wf_agosto <- function( w3 )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202108
-wf_agosto()
+wf_agosto_v1()
 
