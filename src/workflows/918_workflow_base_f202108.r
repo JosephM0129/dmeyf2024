@@ -420,7 +420,7 @@ KA_evaluate_kaggle <- function( pinputexps )
 # Este es el  Workflow Baseline
 # Que predice 202108 donde NO conozco la clase
 
-wf_agosto_v1 <- function( w3 )
+wf_agosto_v1 <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea workflow inicial fija
 
@@ -428,7 +428,7 @@ wf_agosto_v1 <- function( w3 )
   DT_incorporar_dataset( "~/buckets/b1/datasets/competencia_02.csv")
 
   # Etapas preprocesamiento
-  CA_catastrophe_base metodo="MachineLearning")
+  CA_catastrophe_base (metodo="MachineLearning")
   # FEintra_manual_base()
   DR_drifting_base(metodo="deflacion")
   FEhist_base()
