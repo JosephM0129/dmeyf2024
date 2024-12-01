@@ -151,9 +151,9 @@ FEhist_base <- function( pinputexps)
   param_local$Tendencias1$ratiomax <- FALSE
 
   # no me engraso las manos con las tendencias de segundo orden
-  param_local$Tendencias2$run <- FALSE
+  param_local$Tendencias2$run <- TRUE
   param_local$Tendencias2$ventana <- 12
-  param_local$Tendencias2$tendencia <- FALSE
+  param_local$Tendencias2$tendencia <- TRUE
   param_local$Tendencias2$minimo <- FALSE
   param_local$Tendencias2$maximo <- FALSE
   param_local$Tendencias2$promedio <- FALSE
@@ -263,7 +263,7 @@ TS_strategy_base8 <- function( pinputexps )
 
   param_local$meta$script <- "/src/wf-etapas/z2101_TS_training_strategy.r"
 
-  param_local$future <- c(202108)
+  param_local$future <- c(202109)
 
   param_local$final_train$undersampling <- 1.0
   param_local$final_train$clase_minoritaria <- c( "BAJA+1", "BAJA+2")
@@ -273,8 +273,8 @@ TS_strategy_base8 <- function( pinputexps )
 
   param_local$train$training <- c(202104, 202103, 202102,
     202101, 202012, 202011)
-  param_local$train$validation <- c(202105)
-  param_local$train$testing <- c(202106)
+  param_local$train$validation <- c(202106)
+  param_local$train$testing <- c(202107)
 
 
   # Atencion  0.2  de  undersampling de la clase mayoritaria,  los CONTINUA
@@ -455,7 +455,7 @@ KA_evaluate_kaggle_semillerio <- function( pinputexps )
 {
   if( -1 == (param_local <- exp_init())$resultado ) return( 0 )# linea fija
 
-  param_local$meta$script <- "/src/wf-etapas/z2602_KA_evaluate_kaggle_SEMI.r"
+  param_local$meta$script <- "/src/wf-etapas/z2603_KA_evaluate_kaggle_SEMI.r"
 
   param_local$semilla <- NULL  # no usa semilla, es deterministico
 
@@ -481,9 +481,9 @@ wf_SEMI_ago_orden227 <- function( pnombrewf )
   param_local <- exp_wf_init( pnombrewf ) # linea fija
 
   # Etapa especificacion dataset de la Segunda Competencia Kaggle
-  DT_incorporar_dataset( "~/buckets/b1/datasets/competencia_02.csv.gz")
+  DT_incorporar_dataset( "~/buckets/b1/datasets/competencia_03.csv")
 
-  CA_catastrophe_base( metodo="MachineLearning")
+  CA_catastrophe_base(metodo="MachineLearning")
   FEintra_manual_base()
   DR_drifting_base(metodo="rank_cero_fijo")
   FEhist_base()
