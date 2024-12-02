@@ -302,7 +302,9 @@ TS_strategy_base8 <- function( pinputexps )
     202107, 202106, 202105, 202104, 202103, 202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, 
     # 202006  Excluyo por variables rotas
-    202005, 202004, 202003, 202002, 202001,
+    202005, 
+   # 202004, 202003, Excluyo por reconemendación
+    202002, 202001,
     201912, 201911,
     # 201910 Excluyo por variables rotas
     201909, 201908, 201907, 201906,
@@ -318,7 +320,9 @@ TS_strategy_base8 <- function( pinputexps )
     202105, 202104, 202103, 202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, 
     # 202006  Excluyo por variables rotas
-    202005, 202004, 202003, 202002, 202001,
+    202005, 
+    # 202004, 202003, , Excluyo por reconemendación
+    202002, 202001,
     201912, 201911,
     # 201910 Excluyo por variables rotas
     201909, 201908, 201907, 201906,
@@ -476,47 +480,48 @@ KA_evaluate_kaggle_semillerio <- function( pinputexps )
 # Que predice 202107 donde conozco la clase
 # y ya genera graficos
 
-wf_SEMI_ago_orden227 <- function( pnombrewf )
+
+wf_SEMI_sep_orden227_sin2020marabr <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea fija
-
+  
   # Etapa especificacion dataset de la Segunda Competencia Kaggle
   DT_incorporar_dataset( "~/buckets/b1/datasets/competencia_03.csv")
-
+  
   CA_catastrophe_base(metodo="MachineLearning")
   FEintra_manual_base()
   DR_drifting_base(metodo="rank_cero_fijo")
   FEhist_base()
   ultimo <- FErf_attributes_base()
   #CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
-
+  
   ts8 <- TS_strategy_base8()
-
+  
   # la Bayesian Optimization con el semillerio dentro
   ht <- HT_tuning_semillerio(
     semillerio = 50, # semillerio dentro de la Bayesian Optim
     bo_iteraciones = 10  # iteraciones inteligentes, apenas 10
   )
-
-
+  
+  
   fm <- FM_final_models_lightgbm_semillerio( 
     c(ht, ts8), # los inputs
     ranks = c(1), # 1 = el mejor de la bayesian optimization
     semillerio = 50,   # cantidad de semillas finales
     repeticiones_exp = 1  # cantidad de repeticiones del semillerio
   )
-
-  SC_scoring_semillerio( c(fm, ts8) )
-  KA_evaluate_kaggle_semillerio()
   
-
+  SC_scoring_semillerio( c(fm, ts8) )
+    KA_evaluate_kaggle_semillerio()
+  
+  
   return( exp_wf_end() ) # linea fija
 }
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
 # Aqui comienza el programa
 
-# llamo al workflow con future = 202108
-wf_SEMI_ago_orden227()
+# llamo al workflow con future = 202109
+wf_SEMI_sep_orden227_sin2020marabr()
 
 
