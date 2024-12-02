@@ -481,7 +481,7 @@ KA_evaluate_kaggle_semillerio <- function( pinputexps )
 # y ya genera graficos
 
 
-wf_SEMI_sep_orden227_sin2020marabr <- function( pnombrewf )
+wf_SEMI_sep_orden227_sumo201902y201901 <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea fija
   
@@ -522,6 +522,6 @@ wf_SEMI_sep_orden227_sin2020marabr <- function( pnombrewf )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202109
-wf_SEMI_sep_orden227_sin2020marabr()
+wf_SEMI_sep_orden227_sumo201902y201901()
 
 
