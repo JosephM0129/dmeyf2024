@@ -138,7 +138,7 @@ FEhist_base <- function( pinputexps)
   
   param_local$lag1 <- TRUE
   param_local$lag2 <- TRUE # no me engraso con los lags de orden 2
-  param_local$lag3 <- FALSE # no me engraso con los lags de orden 3
+  param_local$lag3 <- TRUE # no me engraso con los lags de orden 3
   
   # no me engraso las manos con las tendencias
   param_local$Tendencias1$run <- TRUE  # FALSE, no corre nada de lo que sigue
@@ -300,7 +300,7 @@ TS_strategy_base8 <- function( pinputexps )
   param_local$final_train$clase_minoritaria <- c( "BAJA+1", "BAJA+2")
   param_local$final_train$training <- c(
     202107, 202106, 202105, 
-    # 202104, 202103, Exlcuir por recomendación
+    202104, 202103,
     202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, 
     # 202006  Excluyo por variables rotas
@@ -321,7 +321,7 @@ TS_strategy_base8 <- function( pinputexps )
   
   param_local$train$training <- c(
     202105, 
-    # 202104, 202103, Exlcuir por recomendación
+    202104, 202103, 
     202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, 
     # 202006  Excluyo por variables rotas
