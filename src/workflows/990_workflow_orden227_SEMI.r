@@ -305,7 +305,7 @@ TS_strategy_base8 <- function( pinputexps )
     202012, 202011, 202010, 202009, 202008, 202007, 
     # 202006  Excluyo por variables rotas
     202005, 
-    202004, 202003, 
+    # 202004, 202003,  Excluyo por reconemendación
     202002, 202001,
     201912, 201911,
     # 201910 Excluyo por variables rotas
@@ -326,7 +326,7 @@ TS_strategy_base8 <- function( pinputexps )
     202012, 202011, 202010, 202009, 202008, 202007, 
     # 202006  Excluyo por variables rotas
     202005, 
-    202004, 202003, 
+    # 202004, 202003,  Excluyo por reconemendación
     202002, 202001,
     201912, 201911,
     # 201910 Excluyo por variables rotas
