@@ -486,7 +486,7 @@ KA_evaluate_kaggle_semillerio <- function( pinputexps )
 # y ya genera graficos
 
 
-wf_SEMI_sep_orden227_resto202104y202103 <- function( pnombrewf )
+wf_SEMI_sep_orden227_delta3 <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea fija
   
@@ -527,6 +527,6 @@ wf_SEMI_sep_orden227_resto202104y202103 <- function( pnombrewf )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202109
-wf_SEMI_sep_orden227_resto202104y202103()
+wf_SEMI_sep_orden227_delta3()
 
 
