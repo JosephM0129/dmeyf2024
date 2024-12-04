@@ -141,9 +141,9 @@ FEhist_base <- function( pinputexps)
   param_local$lag3 <- FALSE # no me engraso con los lags de orden 3
   
   # no me engraso las manos con las tendencias
-  param_local$Tendencias1$run <- TRUE  # FALSE, no corre nada de lo que sigue
+  param_local$Tendencias1$run <- FALSE  # FALSE, no corre nada de lo que sigue
   param_local$Tendencias1$ventana <- 6
-  param_local$Tendencias1$tendencia <- TRUE
+  param_local$Tendencias1$tendencia <- FALSE
   param_local$Tendencias1$minimo <- FALSE
   param_local$Tendencias1$maximo <- FALSE
   param_local$Tendencias1$promedio <- FALSE
@@ -151,9 +151,9 @@ FEhist_base <- function( pinputexps)
   param_local$Tendencias1$ratiomax <- FALSE
   
   # no me engraso las manos con las tendencias de segundo orden
-  param_local$Tendencias2$run <- TRUE
+  param_local$Tendencias2$run <- FALSE
   param_local$Tendencias2$ventana <- 12
-  param_local$Tendencias2$tendencia <- TRUE
+  param_local$Tendencias2$tendencia <- FALSE
   param_local$Tendencias2$minimo <- FALSE
   param_local$Tendencias2$maximo <- FALSE
   param_local$Tendencias2$promedio <- FALSE
@@ -303,14 +303,14 @@ TS_strategy_base8 <- function( pinputexps )
     202104, 202103,
     202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, 
-    # 202006  Excluyo por variables rotas
+    202006,  #Excluyo por variables rotas
     202005, 
-    # 202004, 202003,
+    202004, 202003,
     202002, 202001,
     201912, 201911,
-    # 201910 Excluyo por variables rotas
+    201910, #Excluyo por variables rotas
     201909, 201908, 201907, 201906,
-    # 201905  Excluyo por variables rotas
+    201905,  #Excluyo por variables rotas
     201904, 201903, 201902, 201901
   )
   
@@ -324,14 +324,14 @@ TS_strategy_base8 <- function( pinputexps )
     202104, 202103,
     202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, 
-    # 202006  Excluyo por variables rotas
+    202006,  #Excluyo por variables rotas
     202005, 
-    # 202004, 202003,
+    202004, 202003,
     202002, 202001,
     201912, 201911,
-    # 201910 Excluyo por variables rotas
+    201910, #Excluyo por variables rotas
     201909, 201908, 201907, 201906,
-    # 201905  Excluyo por variables rotas
+    201905,  #Excluyo por variables rotas
     201904, 201903, 201902, 201901
   )
   
@@ -486,18 +486,18 @@ KA_evaluate_kaggle_semillerio <- function( pinputexps )
 # y ya genera graficos
 
 
-wf_SEMI_sep_orden227_sin20203y202004_v2 <- function( pnombrewf )
+wf_SEMI_sep_orden227_LineaMuerte <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea fija
   
   # Etapa especificacion dataset de la Segunda Competencia Kaggle
   DT_incorporar_dataset( "~/buckets/b1/datasets/competencia_03.csv")
   
-  CA_catastrophe_base(metodo="MachineLearning")
-  FEintra_manual_base()
-  DR_drifting_base(metodo="rank_cero_fijo")
+  CA_catastrophe_base(metodo="Ninguno")
+  #FEintra_manual_base()
+  DR_drifting_base(metodo="ninguno")
   FEhist_base()
-  ultimo <- FErf_attributes_base()
+  #ultimo <- FErf_attributes_base()
   #CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
   
   ts8 <- TS_strategy_base8()
@@ -527,6 +527,6 @@ wf_SEMI_sep_orden227_sin20203y202004_v2 <- function( pnombrewf )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202109
-wf_SEMI_sep_orden227_sin20203y202004_v2()
+wf_SEMI_sep_orden227_LineaMuerte()
 
 
