@@ -1,0 +1,7 @@
+Se adjunta el script en R. Es necesario cambiar el directorio del archivo del dataset de la competencia de Kaggle.
+Correr en el siguiente orden en el ambiente de google cloud con al menos 8CPU y 128 de memoria ram.
+
+Mediante la consola "903_run_workflow.r" ejecutar:
+1) flow_wf_agosto_v1-001_918_workflow_base_f202108.r
+
+Nota: no se realizó alguna modificación en los scripts R de WUBA previsto por la cátedra.

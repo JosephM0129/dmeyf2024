@@ -1,0 +1,13 @@
+Se adjunta el script en R, es necesario cambiar el directorio del archivo del dataset de la competencia de Kaggle.
+
+Correr los siguientes scritps mediante la consola "909_run_orden227.r" en el siguiente orden en el ambiente de google cloud con al menos 8CPU y 128 de memoria ram.
+
+1) 990_workflow_orden227_SEMI_base.r
+2) 990_workflow_orden227_SEMI_resto202104y202103.r
+3) 990_workflow_orden227_SEMI_sumo201902y201901.r
+4) 990_workflow_orden227_SEMI_sin202004202003.r
+5) 990_workflow_orden227_SEMI_delta3.r
+6) 990_workflow_orden227_SEMI_LineaMuerte.r
+7) Obtenido las predicciones a futuro de cada uno de los modelos generados, por ejemplo, "expw227_SC-0001_tb_future_prediccion_base.txt", correr "hibridacion_semillero.py" para realizar ensemble.
+
+Nota: no se realizó alguna modificación en los scripts R de WUBA previsto por la cátedra.
